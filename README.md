@@ -4,7 +4,8 @@ This project built with python and flask with SQLalchemy database.
 Visit Web here:
 http://ec2-13-48-194-1.eu-north-1.compute.amazonaws.com:4000/
 
-Regular user can only comment on movies 
+Regular user can only comment on movies
+
 Admin user can post/delete movies 
 
 
