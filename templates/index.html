@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Movies</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="/static/css/test.css"/>
+    <link rel="stylesheet" href="/static/css/navbar.css"/>
+</head>
+<body>
+    <div id="right-content">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            {% if username %}
+                <p>Welcome, {{ username.capitalize() }}</p>
+                {% if admin %}
+                    <a href="/">Home</a>
+                    <a href="/admin">Post</a>
+                    <a href="/logout">Logout</a>
+
+                {% else %}
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+
+                {% endif %}
+            {% else %}
+                <a href="/">Home</a>
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            {% endif %}
+        </div>
+        <span style="font-size:30px; cursor:pointer; padding-right:17px; color: rgb(177, 174, 174);" onclick="openNav()">&#9776;</span>
+
+    </div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+
+<article class="movie-container">
+
+    {% for movie in movies %}
+    <div class="movie">
+        <h2>{{ movie.title }}</h2>
+        <a href="/movie?name={{ movie.title }}" class="movie-link">
+            <img src="data:image/jpeg;base64,{{ movie.image }}" alt="Movie Image">
+        </a>
+        {% if admin %}
+            <form action="/delete/{{ movie.id }}" method="POST"> 
+                <button style="background-color: #741512; color: #fff; padding: 5px 5px; border: none; border-radius: 4px; cursor: pointer;" type="submit">Delete</button> 
+            </form>
+        {% endif %}
+    </div>
+    {% endfor %}
+</article>
+
+</body>
+</html>

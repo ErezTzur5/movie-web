@@ -1,0 +1,9 @@
+regular user:
+
+user: test
+pass: test 
+
+admin user : 
+
+user: admin 
+pass: admin 

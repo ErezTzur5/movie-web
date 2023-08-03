@@ -1,0 +1,140 @@
+body {
+    background-color: #1e1e1e;
+    color: #ffffff;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .detail {
+    display: flex;
+    justify-content: left;
+    align-items: top;
+    height: 100vh;
+  }
+  
+  .image-detail {
+    width: 30%;
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 30px;
+  }
+  
+  .image-detail img {
+    max-width: 80%;
+    height: auto;
+    /* padding-bottom: 200px; */
+  }
+  
+  .content-detail {
+    width: 60%;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    text-align: center;
+    padding-top: 30px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding-left: 0;
+    text-align: center;
+    padding-top: 20px;
+
+  }
+  
+  li {
+    margin-bottom: 8px;
+  }
+  
+  .description {
+    text-align: center;
+    white-space: pre-wrap;
+    word-break:normal;
+    margin-left: 30%;
+    width: 30em; /* Adjust the width as per your requirements */
+  }
+  a {
+    color: #ffffff;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+
+  .center-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* height: 100vh; Adjust this value based on your needs */
+  }
+  /* comment styling: */
+  .comment-block {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 80%;
+    width: 80%;
+    border: 2px solid rgb(95, 93, 93);
+    padding: 20px;
+    color: #fff;
+    overflow-y: auto;
+  /* Centering styles */
+    position:relative;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+}
+
+.comment-block h2 {
+    margin-top: 0;
+    
+}
+
+.comment-block form,
+.comment-block p {
+    margin-bottom: 10px;
+}
+
+.comment-card {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #0c0b0b;
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.comment-content {
+    margin-bottom: 5px;
+}
+
+.comment-content p {
+    margin-bottom: 0;
+}
+
+.comment-content small {
+    color: #777;
+}
+
+.comment-block textarea {
+    resize: vertical;
+}
+
+.show-more-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.text {
+  word-break: break-all;
+  width: 70%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

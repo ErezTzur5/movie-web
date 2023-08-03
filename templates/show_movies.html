@@ -1,0 +1,28 @@
+<html>
+<head>
+    <title>Movie Details</title>
+</head>
+<body>
+    <h1>Movie Details</h1>
+    <table>
+        <tr>
+            <th>Title</th>
+            <th>Image</th>
+            <th>Description</th>
+            <th>Director</th>
+            <th>Actors</th>
+            <th>Release Year</th>
+        </tr>
+        {% for movie in movies %}
+        <tr>
+            <td>{{ movie[1] }}</td>
+            <td><img src="{{ movie[2] }}" alt="Movie Image" height="150"></td>
+            <td>{{ movie[3] }}</td>
+            <td>{{ movie[4] }}</td>
+            <td>{{ movie[5] }}</td>
+            <td>{{ movie[6] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

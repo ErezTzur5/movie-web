@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/login.css"/>
+    <link rel="stylesheet" href="/static/css/navbar.css"/>
+    <title>Signup Page</title>
+</head>
+<body>
+    <body>
+        <div id="right-content">
+            <div id="mySidenav" class="sidenav">
+                <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                {% if username %}
+                    <p>Welcome, {{ username.capitalize() }}</p>
+                    {% if admin %}
+                        <a href="/">Home</a>
+                        <a href="/admin">Post</a>
+                        <a href="/logout">Logout</a>
+                    {% else %}
+                        <a href="/">Home</a>
+                        <a href="/logout">Logout</a>
+
+                        
+                    {% endif %}
+                {% else %}
+                    <a href="/">Home</a>
+                    <a href="/login">Login</a>
+                    <a href="/signup">Signup</a>
+                {% endif %}
+            </div>
+            <span style="font-size:30px;cursor:pointer;padding-right:17px;" onclick="openNav()">&#9776;</span>
+        </div>
+    
+    <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+    </script>
+        <content>
+
+            <div class="login-box">
+                <h2>SignUp</h2>
+                <form action="/signup" method="POST">
+                    <div class="user-box">
+                        <input type="text" name="username" id="username" required>
+                        <label for="username">Username:</label>
+                        
+                    </div>
+                    <div class="user-box">
+                        <input type="password" name="password" id="password" required>
+                        <label for="password">Password:</label>
+                        
+                    </div>
+                    <div class="user-box">
+                        <a>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <span></span>
+                            <input style="margin-bottom: 0;" type="submit" value="Sign Up">
+                        </a> 
+                    </div>
+                    <br>
+                    <a href="/login" style="margin-left: 10%;width: 70%;">Already have an account ?</a>
+                </form>
+                {% if error %}
+                    {% if password_error %}
+                        <p>Password must be at least 8 characters long and contain at least one capital letter.</p>
+                    {% endif %}
+                    {% if username_error %}
+                        <p>Username must be at least 4 characters long.</p>
+                    {% endif %}
+                    {% if username_taken %}
+                        <p>Username is already taken. Please choose a different username.</p>
+                    {% endif %}
+                {% endif %}
+                <!-- {% if error %}
+                    <p style="color:white">Error Username already exist</p>
+                {% endif %} -->
+            </div>
+        </content>
+        
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+</script>
+
+</body>
+</html>

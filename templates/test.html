@@ -1,0 +1,56 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/test.css"/>
+    <title>Movies</title>
+</head>
+<body style="width:100%;height:100%">
+    <div class="wrapper" style="width:100%;height:100%">
+        <header class="navbar layout-navbar">
+            <div align="left">
+                {% if username %}
+                <p class="welcome">Welcome, {{ username.capitalize() }}</p>
+                
+                <div class="user-options">
+                    {% if admin %}
+                    <a href="/admin">Post</a>
+                    <a href="/logout">Logout</a>
+                    {% else %}
+                    <a href="/logout">Logout</a>
+                    {% endif %}
+                </div>
+                {% else %}
+                <div class="user-options">
+                    <a href="/login">Sign In</a>
+                    <a href="/signup">Sign Up</a>
+                </div>
+                {% endif %}
+            </div>
+            <div align="center">
+                <input type="text" placeholder="Search Seret...">
+            </div>
+            <div class="icon-container">
+                <a href="/">
+                <img src="{{ url_for('static', filename='icon.jpg') }}" alt="Icon" style="border-radius: 100%; width: 30px; height: 30px;">
+                </a>
+            </div>
+        </header>
+
+        <article class="movie-container">
+
+                {% for movie in movies %}
+                <div class="movie">
+                    <h2>{{ movie.title }}</h2>
+                    <a href="/movie?name={{ movie.title }}" class="movie-link">
+                        <img src="{{ movie.image }}" alt="Movie Image" height="150">
+                    </a>
+                    
+                    <form action="/delete/{{ movie.id }}" method="POST">
+                    <button type="submit">Delete</button>
+                    </form>
+                </div>
+                {% endfor %}
+        </article>
+
+    </div>
+</body>
+</html>

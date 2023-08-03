@@ -1,0 +1,43 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/test.css"/>
+</head>
+<body style="width:100%;height:100%">
+    <div class="wrapper" style="width:100%;height:100%">
+        <!-- <header>Header</header> -->
+        <header class="navbar layout-navbar">
+            <div align="left">
+                {% if username %}
+                <p class="welcome">Welcome, {{ username }}</p>
+
+                <div class="user-options">
+                    <a href="/admin">Post</a>
+                    <a href="/logout">Logout</a>
+                </div>
+                {% else %}
+                <div class="user-options">
+                    <a href="/login">Sign In</a>
+                    <a href="/signup">Sign Up</a>
+                </div>
+                {% endif %}
+            </div>
+            <div align="center">
+                <input type="text" placeholder="Search Seret...">
+            </div>
+        </header>
+
+        <article>
+            <p>
+                404 not found
+            </p>
+                <aside>
+                    <ul>
+                        <!-- <li>Sidebar</li> -->
+                    </ul>
+                </aside>
+        </article>
+
+        <!-- <footer>Footer</footer> -->
+    </div>
+</body>
+</html>

@@ -1,0 +1,146 @@
+<html>
+<head>
+    <link rel="stylesheet" href="/static/css/movie-details.css">
+    <link rel="stylesheet" href="/static/css/test.css"/>
+    <link rel="stylesheet" href="/static/css/navbar.css"/>
+    <link rel="stylesheet" href="/static/css/star_rate.css"/>
+    <title>{{title}}</title>
+</head>
+<body>
+    <div id="right-content">
+        <div id="mySidenav" class="sidenav">
+            <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+            {% if username %}
+                <p>Welcome, {{ username.capitalize() }}</p>
+                {% if admin %}
+                    <a href="/">Home</a>
+                    <a href="/admin">Post</a>
+                    <a href="/logout">Logout</a>
+
+                {% else %}
+                    <a href="/">Home</a>
+                    <a href="/logout">Logout</a>
+
+                {% endif %}
+            {% else %}
+                <a href="/">Home</a>
+
+                <a href="/login">Login</a>
+                <a href="/signup">Signup</a>
+            {% endif %}
+        </div>
+        <span style="font-size:30px; cursor:pointer; padding-right:17px; color: rgb(177, 174, 174);" onclick="openNav()">&#9776;</span>
+
+    </div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+}
+</script>
+    <!-- Movie content: -->
+<div class="detail">
+    <div class="image-detail">
+        <img src="data:image/jpeg;base64,{{ movie_image }}" alt="Movie Image">
+    </div>
+    
+    <div class="content-detail">
+        <h2>{{title}}</h2>
+        <ul>
+        <li>Director: {{director}}</li>
+        <li>Release Year: {{release_year}}</li>
+        <li>Actors: {{actors}}</li>
+        <li>Plot:</li>
+        <br>
+        <li><div class="text">{{description}}</div></li>
+        </ul>
+        
+
+        <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        <!-- comments and rating: -->
+        <div class="content-detail">
+            <h2 style="display:block;margin-left: auto;margin-right: auto;">Tell us what you think about the movie</h2>
+            <br><br><br><br>
+            {% if user_id %}
+            <form method="POST" action="/movie?name={{ title }}" onsubmit="return validateRating()">
+                <div align="center" style="display:block;margin-left: auto;margin-right: auto;" class="center-container">
+                    <label for="comment">Comment:</label>&nbsp;
+                    <textarea style="background-color: #a0bada;" id="comment" name="comment" rows="8" cols="40" required></textarea> &nbsp; &nbsp;
+    
+                </div>
+                <br>
+                <div align="center" style="display:flexbox;justify-content:center;   margin-left: auto;margin-right: auto;" class="star-rating">
+                    <input class="radio-input" type="radio" id="star5" name="star-input" value="5" />
+                    <label class="radio-label" class for="star5" title="5 stars">5 stars</label>
+                    
+                    <input class="radio-input" type="radio" id="star4" name="star-input" value="4" />
+                    <label class="radio-label" for="star4" title="4 stars">4 stars</label>
+                    
+                    <input class="radio-input" type="radio" id="star3" name="star-input" value="3" />
+                    <label class="radio-label" for="star3" title="3 stars">3 stars</label>
+                    
+                    <input class="radio-input" type="radio" id="star2" name="star-input" value="2" />
+                    <label class="radio-label" for="star2" title="2 stars">2 stars</label>
+                    
+                    <input class="radio-input" type="radio" id="star1" name="star-input" value="1"/>
+                    <label class="radio-label" for="star1" title="1 star">1 star</label>
+                </div>
+                <div class="center-container">
+                    <input type="submit" value="Submit" id="comments_submittion">
+                </div>
+                
+
+            </form>
+            {% else %}
+            <p>Please log in to comment and rate this movie.</p>
+            {% endif %}
+        
+            <!-- <label for="rating">Rating:</label>&nbsp; -->
+            <!-- <form class="star-rating">
+            </form> -->
+        </div>
+        <div class="comment-block">        
+            {% if comments %}
+            <h2>Comments:</h2>
+            <ul class="comment-list">
+                {% for comment in comments %}
+                    <li class="comment-card cool-border">
+                        <div class="comment-content">
+                            <p>{{ comment.user.username.capitalize() }}: {{ comment.content }}</p>
+                            <small>Posted on: {{ comment.created_at.strftime('%Y-%m-%d, %H:%M') }}, {{ comment.user.username.capitalize() }} Rate this movie: {{ comment.rate }}/5</small>
+                        </div>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        </div>
+    </div>
+</div>
+
+<script>
+    if (window.history.replaceState) {
+        window.history.replaceState(null, null, window.location.href);
+    }
+
+    function validateRating() {
+        let star1 = document.getElementById("star1").checked;
+        let star2 = document.getElementById("star2").checked;
+        let star3 = document.getElementById("star3").checked;
+        let star4 = document.getElementById("star4").checked;
+        let star5 = document.getElementById("star5").checked;
+
+        if (!star1 && !star2 && !star3 && !star4 && !star5) {
+            alert("Please fill in the star field");
+            return false;
+        }
+
+        return true;
+    }
+</script>
+</body>
+</html>
