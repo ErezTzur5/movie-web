@@ -1,8 +1,12 @@
 # movie-web
 This project built with python and flask with SQLalchemy database.
 
+Visit Web here:
+http://ec2-13-48-194-1.eu-north-1.compute.amazonaws.com:4000/
+
 Regular user can only comment on movies 
 Admin user can post/delete movies 
+
 
 This is the homepage:
 ![homepage](https://github.com/ErezTzur5/movie-web/assets/141019783/e41d49b7-fd60-4b43-a8a8-814826b912f6)
